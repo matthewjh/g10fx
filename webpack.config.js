@@ -3,7 +3,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './client/main.tsx',
   output: {
-    filename: './built/bundle.js'
+    path: './built',
+    filename: 'bundle.js'
   },
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
@@ -19,7 +20,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'G10 FX Pairs',
-      filename: './built/index.html',
+      filename: 'index.html',
       template: './client/index.html',
       inject: 'body'
     })

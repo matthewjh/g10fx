@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ./built/"
   },
   "author": "",
   "license": "ISC",
@@ -18,5 +19,8 @@
     "ts-loader": "^0.7.2",
     "typescript": "^1.7.5",
     "webpack": "^1.12.11"
+  },
+  "dependencies": {
+    "http-server": "^0.8.5"
   }
 }
