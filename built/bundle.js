@@ -45,8 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var app_1 = __webpack_require__(1);
-	__webpack_require__(178);
-	var ReactDOM = __webpack_require__(182);
+	__webpack_require__(179);
+	var ReactDOM = __webpack_require__(183);
 	var React = __webpack_require__(2);
 	ReactDOM.render(React.createElement(app_1.App, null), document.getElementsByTagName('body')[0]);
 
@@ -63,25 +63,39 @@
 	var React = __webpack_require__(2);
 	var fx_matrix_1 = __webpack_require__(159);
 	var fx_matrix_2 = __webpack_require__(177);
+	var config_1 = __webpack_require__(178);
 	var App = (function (_super) {
 	    __extends(App, _super);
 	    function App() {
 	        _super.call(this);
 	        this.state = {
-	            fxMatrix: {}
+	            fxMatrix: {},
+	            lastRefreshedDate: null
 	        };
 	        this._fxMatrixApi = new fx_matrix_1.FxMatrixApi();
 	    }
 	    App.prototype.componentDidMount = function () {
 	        var _this = this;
-	        this._fxMatrixApi.getFxMatrix(['GBP', 'USD', 'AUD', 'CAD', 'JPY', 'NZD', 'EUR', 'CHF', 'SEK', 'NOK']).then(function (fxMatrix) {
-	            _this.setState({
-	                fxMatrix: fxMatrix
-	            });
-	        });
+	        this._update();
+	        this._updateIntervalRef = setInterval(function () {
+	            _this._update();
+	        }, config_1.UPDATE_FREQUENCY);
+	    };
+	    App.prototype.componentWillUnmount = function () {
+	        clearInterval(this._updateIntervalRef);
 	    };
 	    App.prototype.render = function () {
-	        return (React.createElement(fx_matrix_2.FxMatrix, {"fxMatrix": this.state.fxMatrix}));
+	        var lastRefreshString = this.state.lastRefreshedDate ? this.state.lastRefreshedDate.toString() : '';
+	        return (React.createElement("div", null, React.createElement("h1", null, "G10 Fx Currency Pairs"), React.createElement("p", null, "Last refreshed at: ", lastRefreshString), React.createElement(fx_matrix_2.FxMatrix, {"fxMatrix": this.state.fxMatrix})));
+	    };
+	    App.prototype._update = function () {
+	        var _this = this;
+	        this._fxMatrixApi.getFxMatrix(config_1.G10_CURRENCY_CODES).then(function (fxMatrix) {
+	            _this.setState({
+	                fxMatrix: fxMatrix,
+	                lastRefreshedDate: new Date()
+	            });
+	        });
 	    };
 	    return App;
 	})(React.Component);
@@ -20812,6 +20826,14 @@
 
 /***/ },
 /* 178 */
+/***/ function(module, exports) {
+
+	exports.UPDATE_FREQUENCY = 5000;
+	exports.G10_CURRENCY_CODES = ['GBP', 'USD', 'AUD', 'CAD', 'JPY', 'NZD', 'EUR', 'CHF', 'SEK', 'NOK'];
+
+
+/***/ },
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var require;var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(process, global, module) {/*!
@@ -20945,7 +20967,7 @@
 	    function lib$es6$promise$asap$$attemptVertx() {
 	      try {
 	        var r = require;
-	        var vertx = __webpack_require__(180);
+	        var vertx = __webpack_require__(181);
 	        lib$es6$promise$asap$$vertxNext = vertx.runOnLoop || vertx.runOnContext;
 	        return lib$es6$promise$asap$$useVertxTimer();
 	      } catch(e) {
@@ -21770,7 +21792,7 @@
 	    };
 
 	    /* global define:true module:true window: true */
-	    if ("function" === 'function' && __webpack_require__(181)['amd']) {
+	    if ("function" === 'function' && __webpack_require__(182)['amd']) {
 	      !(__WEBPACK_AMD_DEFINE_RESULT__ = function() { return lib$es6$promise$umd$$ES6Promise; }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof module !== 'undefined' && module['exports']) {
 	      module['exports'] = lib$es6$promise$umd$$ES6Promise;
@@ -21782,10 +21804,10 @@
 	}).call(this);
 
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), (function() { return this; }()), __webpack_require__(179)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), (function() { return this; }()), __webpack_require__(180)(module)))
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -21801,20 +21823,20 @@
 
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
