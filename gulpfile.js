@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var gutil = require("gulp-util");
 var webpack = require('webpack');
+var typescript = require('gulp-tsc');
 
 /*
  * From http://webpack.github.io/docs/usage-with-gulp.html

@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "axios": "^0.8.1",
+    "es6-promise": "^3.0.2",
     "gulp": "^3.9.0",
     "html-webpack-plugin": "^1.7.0",
     "react": "^0.14.6",
