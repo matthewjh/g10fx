@@ -12,10 +12,9 @@ Built using:
 ## To run
 
 `
-npm install
-`
-
-`
+git clone https://github.com/matthewjh/g10fx.git
+cd g10fx
+npm install --production
 npm start
 `
 
