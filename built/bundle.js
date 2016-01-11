@@ -61,8 +61,8 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var React = __webpack_require__(2);
-	var fx_matrix_1 = __webpack_require__(159);
-	var fx_matrix_2 = __webpack_require__(177);
+	var fx_matrix_api_1 = __webpack_require__(159);
+	var fx_matrix_1 = __webpack_require__(177);
 	var config_1 = __webpack_require__(178);
 	var App = (function (_super) {
 	    __extends(App, _super);
@@ -72,7 +72,7 @@
 	            fxMatrix: {},
 	            lastRefreshedDate: null
 	        };
-	        this._fxMatrixApi = new fx_matrix_1.FxMatrixApi();
+	        this._fxMatrixApi = new fx_matrix_api_1.FxMatrixApi();
 	    }
 	    App.prototype.componentDidMount = function () {
 	        var _this = this;
@@ -86,7 +86,7 @@
 	    };
 	    App.prototype.render = function () {
 	        var lastRefreshString = this.state.lastRefreshedDate ? this.state.lastRefreshedDate.toString() : '';
-	        return (React.createElement("div", null, React.createElement("h1", null, "G10 Fx Currency Pairs"), React.createElement("p", null, "Last refreshed at: ", lastRefreshString), React.createElement(fx_matrix_2.FxMatrix, {"fxMatrix": this.state.fxMatrix})));
+	        return (React.createElement("div", null, React.createElement("h1", null, "G10 Fx Currency Pairs"), React.createElement("p", null, "Last refreshed at: ", lastRefreshString), React.createElement(fx_matrix_1.FxMatrix, {"fxMatrix": this.state.fxMatrix})));
 	    };
 	    App.prototype._update = function () {
 	        var _this = this;

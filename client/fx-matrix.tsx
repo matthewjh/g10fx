@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {IFxMatrix} from './api/fx-matrix';
+import {IFxMatrix} from './api/fx-matrix-api';
 
 interface IProps {
 	fxMatrix: IFxMatrix;
