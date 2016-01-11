@@ -8,7 +8,7 @@ interface IProps {
 interface IState {}
 
 export class FxMatrix extends React.Component<IProps, IState> {
-	
+
 	render() {
 		let currencyCodes = Object.keys(this.props.fxMatrix);
 		let headingCells = currencyCodes.map(c => <th>{c}</th>);
@@ -18,17 +18,19 @@ export class FxMatrix extends React.Component<IProps, IState> {
 
 			return (
 				<tr>
-					<td>{c}</td>
+					<td className="base">{c}</td>
 					{cells}
 				</tr>
 			);
 		});
 
 		return (
-			<table>
+			<table className="fx-matrix">
 				<thead>
 					<tr>
-						<td>Base Currency</td>
+						<th className="base">
+							Base Currency
+						</th>
 						{headingCells}
 					</tr>
 				</thead>

@@ -26,6 +26,7 @@ export class FxMatrixApi implements IFxMatrixApi {
 			let matrix: IFxMatrix = {};
 
 			responses.forEach(r => {
+				// filter the rates from the api to only include the specified currencies
 				let relevantCurrencyCodes = Object.keys(r.rates).filter(c => currencies.indexOf(c) !== -1); 
 				let relevantRates = <IFxRates>{};
 
@@ -33,7 +34,9 @@ export class FxMatrixApi implements IFxMatrixApi {
 					relevantRates[c] = r.rates[c];
 				});
 
+				// the rate for base/base is 1
 				relevantRates[r.base] = 1;
+
 				matrix[r.base] = relevantRates;
 			})
 

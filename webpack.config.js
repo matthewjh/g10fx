@@ -19,7 +19,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'G10 FX Pairs',
-      filename: './built/index.html'
+      filename: './built/index.html',
+      template: './client/index.html',
+      inject: 'body'
     })
   ]
 }

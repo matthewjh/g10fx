@@ -19688,11 +19688,13 @@
 	        return Promise.all(fxResponsePromises).then(function (responses) {
 	            var matrix = {};
 	            responses.forEach(function (r) {
+	                // filter the rates from the api to only include the specified currencies
 	                var relevantCurrencyCodes = Object.keys(r.rates).filter(function (c) { return currencies.indexOf(c) !== -1; });
 	                var relevantRates = {};
 	                relevantCurrencyCodes.forEach(function (c) {
 	                    relevantRates[c] = r.rates[c];
 	                });
+	                // the rate for base/base is 1
 	                relevantRates[r.base] = 1;
 	                matrix[r.base] = relevantRates;
 	            });
@@ -20799,9 +20801,9 @@
 	        var rows = currencyCodes.map(function (c) {
 	            var rates = _this.props.fxMatrix[c];
 	            var cells = currencyCodes.map(function (c) { return React.createElement("td", null, rates[c]); });
-	            return (React.createElement("tr", null, React.createElement("td", null, c), cells));
+	            return (React.createElement("tr", null, React.createElement("td", {"className": "base"}, c), cells));
 	        });
-	        return (React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("td", null, "Base Currency"), headingCells)), React.createElement("tbody", null, rows)));
+	        return (React.createElement("table", {"className": "fx-matrix"}, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", {"className": "base"}, "Base Currency"), headingCells)), React.createElement("tbody", null, rows)));
 	    };
 	    return FxMatrix;
 	})(React.Component);
