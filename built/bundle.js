@@ -62,8 +62,8 @@
 	};
 	var React = __webpack_require__(2);
 	var fx_matrix_api_1 = __webpack_require__(159);
-	var fx_matrix_1 = __webpack_require__(177);
-	var config_1 = __webpack_require__(178);
+	var fx_matrix_1 = __webpack_require__(178);
+	var config_1 = __webpack_require__(177);
 	var App = (function (_super) {
 	    __extends(App, _super);
 	    function App() {
@@ -19693,6 +19693,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var axios = __webpack_require__(160);
+	var config_1 = __webpack_require__(177);
 	var FxMatrixApi = (function () {
 	    function FxMatrixApi() {
 	    }
@@ -19716,7 +19717,7 @@
 	        });
 	    };
 	    FxMatrixApi.prototype._getResponseForBaseCurrency = function (baseCurrency) {
-	        var url = "http://api.fixer.io/latest?base=" + baseCurrency;
+	        var url = config_1.BASE_FX_API_URL + "?base=" + baseCurrency;
 	        return axios.get(url).then(function (response) {
 	            return response.data;
 	        });
@@ -20795,6 +20796,15 @@
 
 /***/ },
 /* 177 */
+/***/ function(module, exports) {
+
+	exports.BASE_FX_API_URL = 'http://api.fixer.io/latest';
+	exports.UPDATE_FREQUENCY = 5000;
+	exports.G10_CURRENCY_CODES = ['GBP', 'USD', 'AUD', 'CAD', 'JPY', 'NZD', 'EUR', 'CHF', 'SEK', 'NOK'];
+
+
+/***/ },
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __extends = (this && this.__extends) || function (d, b) {
@@ -20822,14 +20832,6 @@
 	    return FxMatrix;
 	})(React.Component);
 	exports.FxMatrix = FxMatrix;
-
-
-/***/ },
-/* 178 */
-/***/ function(module, exports) {
-
-	exports.UPDATE_FREQUENCY = 5000;
-	exports.G10_CURRENCY_CODES = ['GBP', 'USD', 'AUD', 'CAD', 'JPY', 'NZD', 'EUR', 'CHF', 'SEK', 'NOK'];
 
 
 /***/ },

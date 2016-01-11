@@ -1,4 +1,5 @@
 import * as axios from 'axios';
+import {BASE_FX_API_URL} from '../config';
 
 export interface IFxRates {
 	[currency: string]: number;
@@ -45,7 +46,7 @@ export class FxMatrixApi implements IFxMatrixApi {
 	}
 
 	private _getResponseForBaseCurrency(baseCurrency: string): Promise<IWebServiceResponse> {
-		let url = `http://api.fixer.io/latest?base=${baseCurrency}`;
+		let url = `${BASE_FX_API_URL}?base=${baseCurrency}`;
 
 		return axios.get(url).then(response => {
 			return <IWebServiceResponse>response.data;
