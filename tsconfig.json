@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "sourceMap": true,
+    "target": "ES5",
+    "jsx": "react"
+  },
+  "files": [
+    "client/main.tsx",
+    "typings/tsd.d.ts"
+  ]
+}
